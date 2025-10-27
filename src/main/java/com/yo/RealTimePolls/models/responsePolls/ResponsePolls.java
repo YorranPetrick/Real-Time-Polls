@@ -5,7 +5,8 @@ import com.yo.RealTimePolls.models.polls.Polls;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.validator.constraints.UUID;
+
+import java.util.UUID;
 
 @Entity
 @Getter

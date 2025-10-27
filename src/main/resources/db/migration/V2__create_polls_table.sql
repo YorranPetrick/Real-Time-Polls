@@ -6,5 +6,5 @@ CREATE TABLE polls (
     start_date TIMESTAMP NOT NULL,
     end_date TIMESTAMP NOT NULL,
     creator_id UUID NOT NULL,
-    FOREIGN KEY (creator_id) REFERENCES user(id_user) ON DELETE CASCADE
+    FOREIGN KEY (creator_id) REFERENCES users(id_user) ON DELETE CASCADE
 );
