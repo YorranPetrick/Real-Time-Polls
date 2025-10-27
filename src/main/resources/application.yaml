@@ -1,0 +1,13 @@
+spring:
+  application:
+    name=RealTimePolls
+
+  Jpa:
+    hibernate:
+      show_sql: true
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/library-polls
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
