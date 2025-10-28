@@ -41,4 +41,16 @@ public class Polls {
 
     @OneToMany(mappedBy = "poll", cascade = CascadeType.ALL)
     private List<ResponsePolls> responsePolls;
+
+    public Polls(String question, Status status, Integer responses, Instant startDate, Instant endDate, User creator) {
+        this.question = question;
+        this.status = status;
+        this.responses = responses;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.creator = creator;
+    }
+
+    public Polls() {
+    }
 }
