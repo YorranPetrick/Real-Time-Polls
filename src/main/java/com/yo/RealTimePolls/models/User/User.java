@@ -29,4 +29,13 @@ public class User {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<ResponsePolls> responsePolls;
+
+    public User(String name, String email) {
+        this.name = name;
+        this.email = email;
+    }
+
+    public User() {
+
+    }
 }
