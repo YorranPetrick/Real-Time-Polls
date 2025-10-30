@@ -3,6 +3,7 @@ package com.yo.RealTimePolls.service.polls;
 import com.yo.RealTimePolls.models.User.User;
 import com.yo.RealTimePolls.models.polls.PollCreateRequest;
 import com.yo.RealTimePolls.models.polls.Polls;
+import com.yo.RealTimePolls.models.statusPolls.Status;
 import com.yo.RealTimePolls.repository.PollsRepository;
 import com.yo.RealTimePolls.repository.UserRepository;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +28,8 @@ public class PollsService {
             if(userRepository.existsByEmail(request.emailCreator())){
                 User creator = userRepository.findByEmail(request.emailCreator());
                 Integer response = 0;
-                Polls poll = new Polls(request.question(), request.status(), response, Instant.now(), Instant.parse(request.endDate()), creator);
+                Status status = Status.ACTIVE;
+                Polls poll = new Polls(request.question(), status, response, Instant.now(), Instant.parse(request.endDate()), creator);
 
                 pollsRepository.save(poll);
                 return ResponseEntity.ok("Poll created successfully.");
