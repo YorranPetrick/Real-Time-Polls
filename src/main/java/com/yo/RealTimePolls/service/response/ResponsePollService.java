@@ -26,7 +26,10 @@ public class ResponsePollService {
 
     public ResponseEntity<String> submitResponse(ResponsePollRequest request) {
         try {
-            if(userRepository.existsById(UUID.fromString(request.userAnswer())) && pollsRepository.existsById(UUID.fromString(request.poll()))) {
+            UUID userId = UUID.fromString(request.userAnswer());
+            UUID pollId = UUID.fromString(request.poll());
+
+            if(userRepository.existsById(userId) && pollsRepository.existsById(pollId)) {
 
                 ResponsePolls response = new ResponsePolls(
                         request.answer(),
