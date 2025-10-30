@@ -26,4 +26,13 @@ public class ResponsePolls {
     @ManyToOne
     @JoinColumn(name = "poll_id", nullable = false)
     private Polls poll;
+
+    public ResponsePolls(String answer, User user, Polls poll) {
+        this.answer = answer;
+        this.user = user;
+        this.poll = poll;
+    }
+
+    public ResponsePolls() {
+    }
 }

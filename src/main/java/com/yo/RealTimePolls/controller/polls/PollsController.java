@@ -3,6 +3,7 @@ package com.yo.RealTimePolls.controller.polls;
 
 import com.yo.RealTimePolls.models.polls.PollCreateRequest;
 import com.yo.RealTimePolls.service.polls.PollsService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,7 +21,7 @@ public class PollsController {
     }
 
     @PostMapping("/create")
-    private ResponseEntity<String> createPoll(@RequestBody PollCreateRequest request) {
+    private ResponseEntity<String> createPoll(@RequestBody @Valid PollCreateRequest request) {
         return pollsService.createPoll(request);
     }
 }
