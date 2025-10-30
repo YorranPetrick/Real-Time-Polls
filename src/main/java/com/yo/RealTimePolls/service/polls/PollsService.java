@@ -25,17 +25,25 @@ public class PollsService {
 
     public ResponseEntity<String> createPoll(PollCreateRequest request) {
         try{
-            if(userRepository.existsByEmail(request.emailCreator())){
-                User creator = userRepository.findByEmail(request.emailCreator());
-                Integer response = 0;
-                Status status = Status.ACTIVE;
-                Polls poll = new Polls(request.question(), status, response, Instant.now(), Instant.parse(request.endDate()), creator);
+            Instant endDate = Instant.parse(request.endDate());
 
-                pollsRepository.save(poll);
-                return ResponseEntity.ok("Poll created successfully.");
+            if(endDate.isBefore(Instant.now())){
+                return ResponseEntity.badRequest().body("The date must be in the future");
 
-            }else {
-                return ResponseEntity.badRequest().body("User with email " + request.emailCreator() + " does not exist.");
+            }else{
+
+                if(userRepository.existsByEmail(request.emailCreator())){
+                    User creator = userRepository.findByEmail(request.emailCreator());
+                    Integer response = 0;
+                    Status status = Status.ACTIVE;
+                    Polls poll = new Polls(request.question(), status, response, Instant.now(), endDate, creator);
+
+                    pollsRepository.save(poll);
+                    return ResponseEntity.ok("Poll created successfully.");
+
+                }else {
+                    return ResponseEntity.badRequest().body("User with email " + request.emailCreator() + " does not exist.");
+                }
             }
 
         } catch (Exception e) {

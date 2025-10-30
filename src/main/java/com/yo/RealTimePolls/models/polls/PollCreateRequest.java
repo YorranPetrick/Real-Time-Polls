@@ -10,7 +10,7 @@ public record PollCreateRequest(
         @NotNull(message = "End date cannot be null")
         String endDate,
         @NotNull(message = "Email creator cannot be null")
-                @Email
+        @Email(message = "Email should be valid")
         String emailCreator
 ) {
 }
